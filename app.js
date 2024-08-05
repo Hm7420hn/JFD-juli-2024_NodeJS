@@ -8,7 +8,7 @@ let Server = http.createServer(function (request, respon){
     // text/html akan merender tag html menjadi tempilan di browser/google 
     respon.writeHead(200, {'Cotent-type': 'text/html'})
     // hasil akhir yg akan diberikan ke user
-    respon.end('<h1>Halo guys!, Saya Mada</h1>')
+    respon.end('<h1>Halaman Beranda</h1>')
 })
 Server.listen(3000, function () {
     console.log('Server sudah siap, buka http://localhost:3000');
