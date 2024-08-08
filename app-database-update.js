@@ -15,11 +15,9 @@ db.connect()
 
 
 let sql =
-`INSERT INTO karyawan (nama, gender, alamat,nip) 
-VALUES ('jokowi', 'L', 'solo','007');`
-// `UPDATE karyawan 
-// SET nama = 'Prabowo'
-// WHERE id = 13`
+`UPDATE karyawan 
+SET nama = 'Prabowo'
+WHERE id = 13`
 
 // memasukkan/menembahan data dari mysql
 db.query( sql, (error, hasil)=> {
