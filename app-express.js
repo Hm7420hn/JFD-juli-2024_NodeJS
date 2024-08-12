@@ -68,6 +68,32 @@ app.get('/karyawan', async function(req, res) {
 })
 
 
+app.get('/karyawan/detail/:id_karyawan', async (req,res)=> {
+
+    // ambil id yang dikirim via url  
+    let idk = req.params.id_karyawan
+
+    // setelah itu kirim ke proses request data mysql
+    let dataview = {
+        pegawai: await get_satuKaryawan(idk),
+    }
+    res.render('karyawan/detail', dataview)
+})
+
+function get_satuKaryawan(idk) {
+    return new Promise( function(resolve, reject) {
+         db.query("SELECT * FROM karyawan WHERE id = ?", [idk], (errorsql, hasil)=> {
+         if (errorsql) {
+                reject(errorsql);
+            } else {
+                resolve(hasil)
+            }
+        })
+    })
+}
+
+
+
 app.listen(port,()=> {
     console.log('Server Sudah Siap, buka http://localhost:' + port);
     
