@@ -103,6 +103,38 @@ function get_satuKaryawan(idk) {
 }
 
 
+app.get('/karyawan/hapus/:id_karyawan', async (req,res)=> {
+    // ambil id yang dikirim via url  
+    let idk = req.params.id_karyawan
+
+    // proses hapus data    
+    try {
+        let hapus = await hapus_satukaryawan(idk)
+        if (hapus.affectedRows > 0) {
+            res.redirect('/karyawan')            
+        }
+    } catch (error) {
+        throw error
+    }
+})
+
+function hapus_satukaryawan(idk) {
+    let sql = 
+    `DELETE FROM karyawan
+    WHERE id = ?`
+
+    return new Promise( function(resolve, reject) {
+        db.query(sql, [idk], function(errorsql, hasil) {
+        if (errorsql) {
+               reject(errorsql);
+           } else {
+               resolve(hasil)
+           }
+       })
+   })
+}
+
+
 
 app.listen(port,()=> {
     console.log('Server Sudah Siap, buka http://localhost:' + port);
