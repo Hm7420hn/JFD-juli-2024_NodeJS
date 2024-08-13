@@ -11,7 +11,9 @@ const db = mysql.createConnection({
 
 db.connect()
 
-
+// Untuk mengambil data yg ter-encoded (enkripsi) dari form html
+// yang dikirimkan melalui protokol http
+app.use(express.urlencoded({extended:false}) )  
 app.set('view engine', 'ejs')   //setting penggunaan template engine untuk express
 app.set('views', './view-ejs')   //setting penggunaan folder untuk menyempan file .ejs
 
@@ -138,6 +140,40 @@ app.get('/karyawan/tambah', (req,res)=> {
     res.render('karyawan/form-tambah')
 })
 
+app.post('/karyawan/proses-insert', async function(req,res) {
+    // terima kiriman  data dari form html
+    // let body = req.body
+    
+    try {
+        let insert = await insert_karyawan(req)
+        if (insert.affectedRows > 0) {
+            res.redirect('/karyawan')
+        }
+    } catch (error) {
+        throw error
+    }
+})
+
+function insert_karyawan(req) {
+    let data = {
+        nama:        req.body.form_nama_lengkap,
+        gender:      req.body.form_gender,
+        alamat:      req.body.form_alamat,
+        nip:         req.body.form_nip,
+    }
+
+    let sql =`INSERT INTO karyawan SET ?`;
+   
+    return new Promise( function(resolve, reject) {
+        db.query(sql, [data], (errorsql, hasil)=> {
+        if (errorsql) {
+               reject(errorsql);
+           } else {
+               resolve(hasil)
+           }
+       })
+   })
+}
 
 
 app.listen(port,()=> {
