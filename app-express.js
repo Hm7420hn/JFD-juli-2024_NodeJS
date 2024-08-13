@@ -124,7 +124,7 @@ function hapus_satukaryawan(idk) {
     WHERE id = ?`
 
     return new Promise( function(resolve, reject) {
-        db.query(sql, [idk], function(errorsql, hasil) {
+        db.query(sql, [idk], (errorsql, hasil)=> {
         if (errorsql) {
                reject(errorsql);
            } else {
@@ -133,6 +133,10 @@ function hapus_satukaryawan(idk) {
        })
    })
 }
+
+app.get('/karyawan/tambah', (req,res)=> {
+    res.render('karyawan/form-tambah')
+})
 
 
 
