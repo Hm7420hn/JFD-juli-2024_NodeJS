@@ -20,7 +20,7 @@
             <th>Nama</th>
             <th>Gender</th>
             <th>NIP</th>
-            <th colspan="2">Pilihan</th>
+            <th colspan="3">Pilihan</th>
         </tr>
     </thead>
     <tbody>
@@ -32,6 +32,11 @@
                 <td class="padding-td">
                     <a href="/karyawan/detail/<%= karyawan[i].id%>">
                         <button>Lihat detail</button>
+                    </a>
+                </td>
+                <td class="padding-td">
+                    <a href="/karyawan/edit/<%= karyawan[i].id%>">
+                        <button style="background-color: rgb(221, 248, 15);">Edit</button>
                     </a>
                 </td>
                 <td class="padding-td">

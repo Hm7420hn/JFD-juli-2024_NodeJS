@@ -1,0 +1,54 @@
+<h1>Edit Karyawan</h1>
+<hr>
+<form action="/karyawan/proses-update" method="post">
+    <label>Nama Lengkap</label>
+    <input type="text" id="nama_lengkap" name="form_nama_lengkap" value="<%= Pegawai[0].nama %>"  required>
+    <br><br>
+
+    <h2>Gender</h2>
+    <br>
+    <input type="radio" id="gender_l" name="form_gender" value="L" <%= (Pegawai[0].gender == 'L') ? 'checked' : '' %> required>
+    <label>Laki</label><br>
+    
+    <input type="radio" id="gender_p" name="form_gender" value="P" <%= (Pegawai[0].gender == 'P') ? 'checked' : '' %> required>
+    <label>Perampuan</label><br>
+    <br>
+    
+    <label>Alamat</label>
+    <textarea id="alamat" name="form_alamat" required><%= Pegawai[0].alamat %></textarea>
+    <br><br>
+    
+    <label> Nomor Induk Pegawai</label>
+    <input type="text" id="nip" name="form_nip" value="<%= Pegawai[0].nip %>"  required>
+    <br><br>
+
+    <label>Departmen</label>
+    <select name="form_departmen" id="departmen" required>
+       <option selected value="">-- pilih --</option>
+       <% for (let i = 0; i < dept.length; i++) { %>
+            <option <%= (Pegawai[0].departmen_id == dept[i].id) ? 'selected' : '' %> value="<%= dept[i].id %>">
+                <%= dept[i].nama %>
+            </option>
+        <% } %>
+    </select>
+    <br><br>
+
+    <label for="Agama">Agama</label>
+    <select name="form_agama" id="agama" required>
+        <option value="">-- pilih --</option>
+        <% for (let i = 0; i < agm.length; i++) { %>
+            <option <%= (Pegawai[0].agama_id == agm[i].id) ? 'selected' : '' %> value="<%= agm[i].id %>">
+                <%= agm[i].nama %>
+            </option>
+        <% } %>
+        </select>
+        <br><br>
+
+
+    <button type="submit">Simpan</button>
+
+</form>
+
+<pre>
+    <% JSON.stringify(dept, null, 4)  %>
+</pre>
