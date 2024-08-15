@@ -22,12 +22,29 @@
     <input type="text" id="nip" name="form_nip" required>
     <br><br>
 
-    <a  href="/karyawan/tambah">
-        <button style="margin: 5px; background-color: aqua;">
-            Tambah
-        </button>
-    </a>
+    <label>Departmen</label>
+    <select name="form_departmen" id="departmen" required>
+       <option selected value="">-- pilih --</option>
+       <% for (let i = 0; i < dept.length; i++) { %>
+            <option value="<%= dept[i].id %>"><%= dept[i].nama %></option>
+        <% } %>
+    </select>
+    <br><br>
 
-    <!-- <button> </button> -->
+    <label for="Agama">Agama</label>
+    <select name="form_agama" id="agama" required>
+        <option selected value="">-- pilih --</option>
+        <% for (let i = 0; i < agm.length; i++) { %>
+            <option value="<%= agm[i].id %>"><%= agm[i].nama %></option>
+        <% } %>
+        </select>
+        <br><br>
+
+
+    <button type="submit">Simpan</button>
 
 </form>
+
+<pre>
+    <% JSON.stringify(dept, null, 4)  %>
+</pre>

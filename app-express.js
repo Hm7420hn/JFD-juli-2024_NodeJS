@@ -136,9 +136,39 @@ function hapus_satukaryawan(idk) {
    })
 }
 
-app.get('/karyawan/tambah', (req,res)=> {
-    res.render('karyawan/form-tambah')
+app.get('/karyawan/tambah', async (req,res)=> {
+    // ambil data departmen  dari database table departmen
+let dataview ={
+    dept: await get_semuaDepartmen(),
+    agm: await get_semuaAgama(),
+    }
+    res.render('karyawan/form-tambah' , dataview)
 })
+
+function get_semuaDepartmen() {
+    return new Promise( (resolve, reject)=> {
+         db.query("SELECT * FROM department", (errorsql, hasil)=> {
+         if (errorsql) {
+                reject(errorsql);
+            } else {
+                resolve(hasil)
+            }
+        })
+    })
+}
+
+
+function get_semuaAgama() {
+    return new Promise( (resolve, reject)=> {
+         db.query("SELECT * FROM agama", (errorsql, hasil)=> {
+         if (errorsql) {
+                reject(errorsql);
+            } else {
+                resolve(hasil)
+            }
+        })
+    })
+}
 
 app.post('/karyawan/proses-insert', async function(req,res) {
     // terima kiriman  data dari form html
