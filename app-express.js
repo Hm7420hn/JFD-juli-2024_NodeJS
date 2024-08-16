@@ -64,7 +64,8 @@ function get_semuakaryawan() {
 // menunggu script yg dipanggil sampai selasai di ekseskusi
 app.get('/karyawan', async function(req, res) { 
     let dataview = {
-        karyawan: await get_semuakaryawan()
+        karyawan: await get_semuakaryawan(),
+        message: req.query.msg,
     }
     res.render('karyawan/index', dataview)
 })
@@ -224,7 +225,7 @@ app.post('/karyawan/proses-update/:id_karyawan', async function (req,res) {
     try {
         let update = await update_karyawan(req, idk)
         if (update.affectedRows > 0) {
-            res.redirect('/karyawan')
+            res.redirect(`/karyawan?msg=berhasil edit karyawan a/n ${req.body.form_nama_lengkap}`)
         }
     } catch (error) {
         throw error
