@@ -114,7 +114,7 @@ app.get('/karyawan/hapus/:id_karyawan', async (req,res)=> {
     try {
         let hapus = await hapus_satukaryawan(idk)
         if (hapus.affectedRows > 0) {
-            res.redirect('/karyawan')            
+            res.redirect(`/karyawan?msg=berhasil hapus karyawan`)            
         }
     } catch (error) {
         throw error
