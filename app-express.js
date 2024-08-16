@@ -219,8 +219,8 @@ app.get('/karyawan/edit/:id_karyawan', async function (req,res) {
 })
 
 
-app.post('karyawan/proses-update/:id_karyawan', async function (req,res) {
-    let idk = res.params.id_karyawan
+app.post('/karyawan/proses-update/:id_karyawan', async function (req,res) {
+    let idk = req.params.id_karyawan
     try {
         let update = await update_karyawan(req, idk)
         if (update.affectedRows > 0) {
