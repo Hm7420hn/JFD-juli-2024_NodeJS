@@ -1,5 +1,5 @@
-const mysql     = require ('mysql2')
-const db        = mysql.createConnection({
+const mysql = require ('mysql2')
+const db = mysql.createConnection({
     host: 'localhost',
     user: 'root',
     password: '',
@@ -8,6 +8,18 @@ const db        = mysql.createConnection({
 db.connect()
 
 
+function ekseskusi(script_sql) {
+    return new Promise( (resolve, reject)=> {
+         db.query(script_sql, (errorsql, hasil)=> {
+         if (errorsql) {
+                reject(errorsql);
+            } else {
+                resolve(hasil)
+            }
+        })
+    })
+}
+
 module.exports = {
-    db
+    db, ekseskusi
 }
