@@ -8,7 +8,7 @@ const db = mysql.createConnection({
 db.connect()
 
 
-function ekseskusi(script_sql) {
+function eksekusi(script_sql) {
     return new Promise( (resolve, reject)=> {
          db.query(script_sql, (errorsql, hasil)=> {
          if (errorsql) {
@@ -21,5 +21,5 @@ function ekseskusi(script_sql) {
 }
 
 module.exports = {
-    db, ekseskusi
+    db, eksekusi
 }

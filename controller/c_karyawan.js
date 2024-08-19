@@ -1,6 +1,6 @@
-const m_karyawan    = require('../model/m_karyawan')
+const m_karyawan     = require('../model/m_karyawan')
 const m_departemen   = require('../model/m_departemen') 
-const m_agama       = require('../model/m_agama')
+const m_agama        = require('../model/m_agama')
 
 
 module.exports = 
@@ -57,7 +57,7 @@ module.exports =
     edit: async function(req,res) {
         let idk = req.params.id_karyawan
         let dataview = {
-            dept    : await m_departemen.get_semuaDepartemen(),
+            dept    : await m_departemen.get_semuaDepartmen(),
             agm     : await m_agama.get_semuaAgama(),
             pegawai : await m_karyawan.get_satuKaryawan(idk),
         }
